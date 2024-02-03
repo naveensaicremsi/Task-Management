@@ -1,0 +1,1596 @@
+<!--This is the home page which is the website root-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- page Title -->
+    <title>Home Page</title>
+    <!--  jQuery library -->
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-3.6.0.min.js"
+    ></script>
+    <!-- BootStrap link -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for stars -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- External css file -->
+    <link href="styles.css" rel="stylesheet" />
+
+    <!-- Summer note -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css"
+    />
+
+    <!-- Summernote CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Tabulator -->
+    <link
+      href="https://unpkg.com/tabulator-tables@5.1.5/dist/css/tabulator.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom CSS for dropdown item hover effect */
+      .dropdown-item:hover {
+        background-color: #f8f9fa;
+        /* Change the background color on hover */
+        color: #007bff;
+        /* Change the text color on hover */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- navbarToggler for less screen with devices -->
+
+    <div class="container-fluid">
+      <!-- {{session.name}} -->
+
+      <nav class="navbar navbar-light bg-light custom-nav">
+        <button
+          class="navbar-toggler d-block d-md-none"
+          id="navbar_toggler_btn"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggleExternalContent"
+          aria-controls="navbarToggleExternalContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </nav>
+
+      <div class="collapse" id="navbarToggleExternalContent">
+        <!-- nav bar -->
+        <ul class="nav nav-pills mb-3 flex-column custom-nav" role="tablist">
+          <!-- Home tab -->
+          <li class="nav-item">
+            <a
+              class="nav-link active"
+              data-toggle="pill"
+              href="#home"
+              role="tab"
+              aria-selected="true"
+              >Home</a
+            >
+          </li>
+
+          <!-- TimeLine tab -->
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-toggle="pill"
+              href="#apexChart"
+              role="tab"
+              id="timeline1"
+              aria-selected="false"
+              >TimeLine</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-toggle="pill"
+              href="#tasksandassignees"
+              role="tab"
+              aria-selected="false"
+              >Tasks and Assignees</a
+            >
+          </li>
+
+          <!-- Task Details Tab -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link"
+              href="#task_details"
+              id="navbarDropdownMenuLink"
+              data-toggle="pill"
+              role="tab"
+              aria-selected="false"
+            >
+              Task Details
+            </a>
+            <div
+              id="navBarDropDown1"
+              class="dropdown-menu"
+              aria-labelledby="navbarDropdownMenuLink"
+            ></div>
+          </li>
+
+          <!-- Add task tab  -->
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="task_details"
+              id="addTaskitem"
+              role="tab"
+              aria-selected="true"
+              data-toggle="modal"
+              data-target="#taskModal"
+              >Add Task</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- navbar for normal devices  -->
+      <ul class="nav nav-pills mb-3 custom-nav" id="navbar" role="tablist">
+        <!-- Home tab -->
+        <li class="nav-item">
+          <!-- <a class="nav-link active" href="./index.html" role="tab" aria-selected="true">Home</a> -->
+          <a
+            class="nav-link active"
+            id="home-tab"
+            data-toggle="pill"
+            href="#home"
+            role="tab"
+            aria-selected="true"
+            >Home</a
+          >
+        </li>
+
+        <!-- TimeLine tab -->
+        <li class="nav-item">
+          <!-- <a class="nav-link" href="./apexChart.html" role="tab" aria-selected="false">TimeLine</a> -->
+          <a
+            class="nav-link"
+            data-toggle="pill"
+            href="#apexChart"
+            role="tab"
+            id="timeline"
+            aria-selected="false"
+            >TimeLine</a
+          >
+        </li>
+
+        <!-- Task Details Tab -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            data-toggle="pill"
+            href="#task_details"
+            role="tab"
+            aria-selected="false"
+            >Task Details</a
+          >
+          <!-- <div id="navBarDropDown" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"> -->
+        </li>
+
+        <!-- Tasks and assignees tab -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            data-toggle="pill"
+            href="#tasksandassignees"
+            role="tab"
+            aria-selected="false"
+            >Tasks and Assignees</a
+          >
+        </li>
+
+        <!-- Add task tab  -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href=""
+            id="#addTaskitem"
+            role="tab"
+            aria-selected="true"
+            data-toggle="modal"
+            data-target="#taskModal"
+            >Add Task</a
+          >
+        </li>
+      </ul>
+
+      <!--**************************** checkboxes *******************************-->
+      <nav class="navbar navbar-expand bg-white">
+        <div class="navbar-nav mr-auto" id="buttonContainer"></div>
+      </nav>
+
+      <!--*************** tabulator Pill ***************************-->
+      <div class="tab-content" id="pills-tabContent">
+        <div
+          class="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="pills-home-tab"
+        >
+          <br />
+          <p class="text-info mb-1">
+            <b>Task Table</b>
+            <button
+              id="refreshButton"
+              class="btn btn-link"
+              onclick="refreshPage()"
+            >
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+          </p>
+
+          <!-- Tabulator Filter -->
+          <div class="table-controls">
+            <!-- For field -->
+            <span>
+              <label>Field: </label>
+              <select id="filter-field">
+                <option></option>
+                <option value="name">Task</option>
+                <option value="description">Description</option>
+                <option value="assignedTo">Assigned To</option>
+                <option value="status">Status</option>
+                <option value="progress">Task Progress</option>
+                <option value="rating">Rating</option>
+                <option value="id">ID</option>
+                <option value="startDate">Start Date</option>
+                <option value="endDate">End Date</option>
+                <option value="source">Task Source</option>
+              </select>
+            </span>
+
+            <!-- For type -->
+            <span>
+              <label>Type: </label>
+              <select id="filter-type">
+                <option value="=">=</option>
+                <option value="<">&lt;</option>
+                <option value="<=">&lt;=</option>
+                <option value=">">&gt;</option>
+                <option value=">=">&gt;=</option>
+                <option value="!=">!=</option>
+                <option value="like">like</option>
+              </select>
+            </span>
+
+            <!-- For value -->
+            <span
+              ><label>Value: </label>
+              <input
+                id="filter-value"
+                type="text"
+                placeholder="value to filter"
+            /></span>
+
+            <button id="filter-clear">Clear Filter</button>
+          </div>
+
+          <!-- Space between the table controls and the actual table -->
+          <p></p>
+
+          <!-- The Loading indicator that show till the data fetches from the server -->
+          <div id="loading-overlay">
+            <div class="spinner"></div>
+          </div>
+
+          <!-- Div that is responsible for the table display -->
+
+          <div id="example-table"></div>
+        </div>
+
+        <!--************ timeline Pill *******************-->
+        <div
+          class="tab-pane fade"
+          id="apexChart"
+          role="tabpanel"
+          aria-labelledby="pills-profile-tab"
+        >
+          <p class="text-info mb-1"><b>Time Line</b></p>
+
+          <div id="chart" style="height: 800px; width: 100%"></div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="task_details"
+          role="tabpanel"
+          aria-labelledby="pills-profile-tab"
+        >
+          <!--*******************************task details Pill******************-->
+
+          <div
+            class="tab-pane fade show active"
+            id="tasks"
+            role="tabpanel"
+            aria-labelledby="pills-home-tab"
+          >
+            <div class="container mt-5">
+              <!-- Dropdown Button and Menu with Search -->
+              <div class="row">
+                <div class="btn-group">
+                  <button
+                    type="button"
+                    id="selectedOption"
+                    class="btn btn-primary dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    Select an option
+                  </button>
+
+                  <!-- Dropdown with Search -->
+                  <div
+                    class="dropdown-menu dropdown-menu-left"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <div class="dropdown-header">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search..."
+                        id="dropdownSearch"
+                        oninput="filterDropdown()"
+                      />
+                    </div>
+
+                    <!-- Your dropdown items go here -->
+                    <div
+                      id="navBarDropDown"
+                      class="dropdown-item"
+                      aria-labelledby="navbarDropdownMenuLink"
+                    >
+                      <!-- Add more items as needed -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="task-container" id="TaskContainer">
+              <!-- Heading  -->
+
+              <p class="text-info mb-1"><b>Project Details</b></p>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <p id="id"><strong>Task id:</strong></p>
+                  <!-- Project -->
+                  <p id="taskid"><strong>Project:</strong></p>
+                  <!-- Description -->
+                  <p id="desc"><strong>Description:</strong></p>
+
+                  <!-- AssignedTo -->
+                  <p id="assign">
+                    <strong>Assigned to:</strong> <i class="far fa-edit"></i>
+                  </p>
+
+                  <!-- Rating -->
+                  <p id="rating">
+                    <strong>Rating:</strong>
+                    <span class="star-rating"><a href="#">★★★★★</a></span>
+                  </p>
+                </div>
+
+                <div class="col-md-6">
+                  <!-- startDate -->
+                  <p id="startDate">
+                    <strong>Start Date:</strong>
+                    <input
+                      name="startDate"
+                      value=""
+                      type="date"
+                      id="startDatePicker"
+                      class="date-picker"
+                    />
+                  </p>
+
+                  <!-- nextUpdate -->
+                  <p id="nextUpdate">
+                    <strong>Next Update:</strong>
+                    <input
+                      type="date"
+                      value=""
+                      id="nextUpdateDate"
+                      class="date-picker"
+                    />
+                  </p>
+                  <!-- endDate -->
+                  <p id="endDate">
+                    <strong>End Date:</strong>
+                    <input
+                      name="endDate"
+                      value=""
+                      type="date"
+                      id="endDatePicker"
+                      class="date-picker"
+                    />
+                  </p>
+
+                  <!-- Function is written below -->
+                  <div class="input-group">
+                    <label for="progressDisplay" class="input-label"
+                      ><strong>Progress :</strong></label
+                    >
+                    <input
+                      name="progressDisplay"
+                      type="number"
+                      class="small-input"
+                      id="progressDisplay"
+                      placeholder="0"
+                      value="0"
+                      autocomplete="on"
+                      min="0"
+                      max="100"
+                      oninput="enableEdit(this)"
+                      onkeydown="handleKeyPress(event)"
+                    />
+                  </div>
+
+                  <div class="form-group row">
+                    <!-- Status -->
+                    <label class="col-sm-2 col-form-label"
+                      ><strong>Status:</strong></label
+                    >
+                    <div
+                      id="radioBtnDiv"
+                      class="col-sm-10 d-flex align-items-center"
+                    >
+                      <div class="form-check form-check-inline">
+                        <!-- open radio button -->
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          id="open"
+                          name="statusRadio"
+                          value="open"
+                        />
+                        <label class="form-check-label" for="open">Open</label>
+                      </div>
+
+                      <div class="form-check form-check-inline ml-3">
+                        <!-- close radio button -->
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          id="close"
+                          name="statusRadio"
+                          value="close"
+                        />
+                        <label class="form-check-label" for="close"
+                          >Close</label
+                        >
+                      </div>
+                      <div class="form-check form-check-inline ml-3">
+                        <!-- passive radio button -->
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          id="passive"
+                          name="statusRadio"
+                          value="passive"
+                        />
+                        <label class="form-check-label" for="passive"
+                          >Passive</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-start align-items-center">
+                <button
+                  type="button"
+                  id="addUpdateBtn"
+                  class="btn btn-secondary"
+                  style="display: block"
+                  data-toggle="modal"
+                  data-target="#updateModal"
+                >
+                  Add Update
+                </button>
+              </div>
+
+              <!-- WeeklyUpdates -->
+              <div class="weekly-updates" id="weeklyUpdates">
+                <p class="text-info mb-1" id="pastUpdatesHeader">
+                  <b>Past Updates</b>
+                </p>
+                <!-- <h3 id="pastUpdatesHeader">Past Updates</h3> -->
+                <ol id="updateslist"></ol>
+
+                <!-- showMoreButton -->
+                <div id="show-more-button" style="display: none">
+                  <span class="circle me-2"
+                    ><i class="fas fa-angle-down angle-icon"></i
+                  ></span>
+                  See More
+                </div>
+
+                <!-- showLessButton -->
+                <div id="show-less-button" style="display: none">
+                  <span class="circle me-2"
+                    ><i class="fas fa-angle-up angle-icon"></i
+                  ></span>
+                  See Less
+                </div>
+              </div>
+
+              <div class="out-btn-group">
+                <!-- previousButton -->
+                <button type="button" id="prev">Previous</button>
+
+                <!-- nextButton -->
+                <button type="button" id="next">Next</button>
+              </div>
+
+              <i class="fas fa-trash delete-icon" id="deleteEntireTaskIcon"></i>
+            </div>
+            <!-- Container Ended -->
+            <!-- </div> -->
+          </div>
+        </div>
+
+        <!--*************** tasks and assignees pill ***************************-->
+        <div
+          class="tab-pane fade"
+          id="tasksandassignees"
+          role="tabpanel"
+          aria-labelledby="pills-profile-tab"
+        >
+          <p class="text-info mb-1">
+            <b><br />Tasks and Assignees</b>
+          </p>
+
+          <div class="dropdown mb-2">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm dropdown-toggle"
+              data-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Sort By
+            </button>
+            <ul class="dropdown-menu mb-2">
+              <li>
+                <a class="dropdown-item taskassigne" id="name" href="#">Name</a>
+              </li>
+              <li>
+                <a class="dropdown-item taskassigne" id="count" href="#"
+                  >Number Of Tasks</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item taskassigne" id="avg" href="#"
+                  >Average Completion</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="container text-center">
+            <div class="row mb-2">
+              <div class="col">
+                <strong> Name Of Assignee</strong>
+              </div>
+
+              <div class="col">
+                <strong> Number Of Tasks Assigned </strong>
+              </div>
+
+              <div class="col">
+                <strong> Average Completion Of Tasks </strong>
+              </div>
+            </div>
+          </div>
+          <div class="TaskAndAssigneeInfo container text-center">
+            <!-- Sample data -->
+            <div class="row mb-2">
+              <div class="col"></div>
+              <div class="col"></div>
+              <div class="col"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Task Form Modal -->
+      <div
+        class="modal fade"
+        id="taskModal"
+        tabindex="-1"
+        data-backdrop="static"
+        data-keyboard="false"
+        role="dialog"
+        aria-labelledby="taskModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- Heading -->
+              <h5 class="modal-title" id="taskModalLabel">Task Details</h5>
+              <!-- CloseButton -->
+              <button
+                type="button"
+                id="TaskFormCloseButton"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- form -->
+              <form id="taskForm" class="custom-form" autocomplete="off">
+                <div class="form-group">
+                  <!-- TaskName -->
+                  <label for="taskName">Task Name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="taskName"
+                    name="title"
+                    placeholder="Enter task name"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <!--check Box  -->
+                  <input type="checkbox" id="enableSubTask" />
+                  <label for="enableSubTask">Is a subtask of ?</label>
+                  <br />
+
+                  <!-- SubTask Dropdown  -->
+                  <!-- <label for="subtaskof">SubTaskOf:</label> -->
+                  <select
+                    class="form-control"
+                    name="task_id"
+                    id="subtaskof"
+                    disabled
+                  ></select>
+                </div>
+
+                <div class="form-group">
+                  <!-- AssignedTo -->
+                  <!-- <label for="assignedTo">Assigned To:</label> -->
+                  <label for="addAssignee">Assigned To:</label>
+                  <select
+                    name="assigned_to"
+                    class="form-control"
+                    id="addAssignee1"
+                    multiple
+                  ></select>
+                  <!-- <input name="assigned_to" type="text" class="form-control" id="assignedTo"
+              placeholder="Ids of the clients seperated by commas" autocomplete="off" data-role="tagsinput" required> -->
+                </div>
+
+                <div class="form-group">
+                  <!-- Description -->
+                  <label for="description">Description:</label>
+                  <textarea
+                    class="form-control"
+                    name="description"
+                    id="description"
+                    rows="3"
+                    placeholder="Enter task description"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <!-- rating -->
+                  <label for="rating">Rating:</label>
+                  <select class="form-control" id="rating" name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <!-- startDate -->
+                  <label for="formStartDatePicker">Start Date:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="formStartDatePicker"
+                    name="start"
+                    value=""
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <!-- nextUpdate -->
+                  <label for="nextUpdatedatepicker">Next Update:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="nextUpdatedatepicker"
+                    name="next_update"
+                    value=""
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <!-- endDate -->
+                  <label for="formEndDatePicker">End Date:</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="formEndDatePicker"
+                    name="end"
+                    value=""
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <!-- status -->
+                  <label>Status:</label><br />
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="statusOpen"
+                      name="status"
+                      value="open"
+                      checked
+                    />
+                    <label class="form-check-label" for="statusOpen"
+                      >Open</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="statusClose"
+                      name="status"
+                      value="close"
+                    />
+                    <label class="form-check-label" for="statusClose"
+                      >Close</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      id="statusPassive"
+                      name="status"
+                      value="passive"
+                    />
+                    <label class="form-check-label" for="statusPassive"
+                      >Passive</label
+                    >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <!-- progress -->
+                  <label for="progress">Progress</label>
+                  <input
+                    name="progress"
+                    type="number"
+                    class="form-control"
+                    id="progress"
+                    placeholder="Enter progress range from 0 to 100"
+                    value="0"
+                    autocomplete="on"
+                    min="0"
+                    max="100"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <!-- TaskSource -->
+                  <label for="tasksource">Task Source:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="tasksource"
+                    name="source"
+                    placeholder="Enter task source"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <!-- submitButton -->
+                  <button
+                    type="submit"
+                    value="Formsubmit"
+                    class="btn btn-primary"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- **********************************Models********************** -->
+
+    <!-- Model That toggles when addUpdateButton clicks, updateModal -->
+    <div
+      class="modal fade"
+      id="updateModal"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="updateModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Add update heading in modal -->
+            <h5 class="modal-title" id="updateModalLabel">Add Update</h5>
+
+            <!-- closeButton  -->
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Form in the model -->
+            <form id="updateForm">
+              <div class="form-group">
+                <!-- dateInput  -->
+                <label for="updateDate">Date:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="updateDate"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <!-- DescriptionInput -->
+                <label for="updateDescription">Description:</label>
+                <textarea
+                  class="form-control"
+                  id="updateDescription"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <!-- addButton -->
+            <button type="button" class="btn btn-primary" id="saveUpdateBtn">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Update Modal ended  -->
+
+    <!-- EditUpdateModal that toggles when  clicked  -->
+    <div
+      class="modal fade"
+      id="updateModal1"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-labelledby="updateModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Heading of the model -->
+            <h5 class="modal-title" id="updateModalLabel">Edit Update</h5>
+
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Form in the modal -->
+            <form id="updateForm">
+              <div class="form-group">
+                <!-- DateInput -->
+                <label for="updateDate1">Date:</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="updateDate1"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <!-- DescriptionInput -->
+                <label for="updateDescription1">Description:</label>
+                <textarea
+                  class="form-control"
+                  id="updateDescription1"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              id="closeButtonForupdatemodel"
+            >
+              Close
+            </button>
+            <!-- saveButton -->
+            <button type="button" class="btn btn-primary save" id="save1">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--assigneModel that toggles when clicked on add icon  -->
+    <div
+      class="modal fade"
+      id="assigneeModal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-labelledby="assigneeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Heading -->
+            <h5 class="modal-title" id="assigneeModalLabel">
+              Edit / Add Assignee
+            </h5>
+
+            <!-- closeButton -->
+            <button
+              type="button"
+              id="assigneModalCloseBtn"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Dropdown displaying assigned names -->
+            <div class="form-group">
+              <label for="selectedAssignee">Select Assignee:</label>
+              <select
+                class="form-control"
+                id="selectedAssignee"
+                multiple
+              ></select>
+            </div>
+
+            <!-- Display assigned names with checkboxes -->
+            <div id="assignedNames">
+              <!-- This area will be populated dynamically -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              id="closebtn"
+            >
+              Close
+            </button>
+
+            <!-- saveButton -->
+            <button type="button" class="btn btn-primary" id="saveAssigneeBtn">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Task Name Update Modal -->
+    <div
+      class="modal"
+      id="editTaskNameModal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-labelledby="editTaskNameModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Modal heading -->
+            <h5 class="modal-title" id="editTaskNameModalLabel">
+              Edit Task Name
+            </h5>
+
+            <!-- Close button -->
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Form -->
+            <form>
+              <div class="form-group">
+                <!-- Task ID input -->
+                <label for="taskNameInput">Task Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="taskNameInput"
+                  placeholder="Enter new Task ID"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- Close button -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <!-- Save Changes button -->
+            <button type="button" class="btn btn-primary" id="saveTaskNameBtn">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Task Name Update Modal Ended -->
+
+    <!-- Modal for description-->
+
+    <div
+      class="modal"
+      id="editDescriptionModal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-labelledby="editDescriptionModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- heading -->
+            <h5 class="modal-title" id="editDescriptionModalLabel">
+              Edit Description
+            </h5>
+
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- form  -->
+            <form>
+              <div class="form-group">
+                <!-- descriptionInput -->
+                <label for="descriptionInput">Description:</label>
+                <textarea class="form-control" id="descriptionInput" rows="4">
+Current description here... </textarea
+                >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <!-- saveChangesButton -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="saveDescriptionBtn"
+            >
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Description Model Ended -->
+
+    <!-- Mode for TaskName-->
+    <div
+      class="modal"
+      id="editTaskNameModal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-labelledby="editTaskNameModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Heading -->
+            <h5 class="modal-title" id="editTaskNameModalLabel">
+              Edit Project Name
+            </h5>
+
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <!-- taskNameInput -->
+                <label for="taskNameInput">Task Name :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="taskNameInput"
+                  value=""
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- CloseButton -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <!-- SaveChangesButton -->
+            <button type="button" class="btn btn-primary" id="saveTaskNameBtn">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TaskNameModel ended -->
+
+    <!-- Mode for Id-->
+    <div
+      class="modal"
+      id="editidModal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-labelledby="editIDModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Heading -->
+            <h5 class="modal-title" id="editIDModalLabel">Edit Project ID</h5>
+
+            <!-- closeButton -->
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <!-- TaskIdInput -->
+                <label for="idInput">ID:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="idInput"
+                  name="idInput"
+                  value=""
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- CloseButton -->
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <!-- SaveChangesButton -->
+            <button type="button" class="btn btn-primary" id="saveIDBtn">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- IdModel ended -->
+
+    <!--  Model for Task Id already Exist-->
+    <div class="modal" id="taskExistsModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Task Already Exists</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Task Id 6 already exists.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Model ended -->
+
+    <!-- Add assignee Model -->
+    <div
+      class="modal"
+      id="addAssigneeModal"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+      aria-labelledby="addAssigneeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <!-- Heading -->
+            <h5 class="modal-title" id="addAssigneeModalLabel">Add Assignee</h5>
+            <!-- closeButton -->
+            <button
+              type="button"
+              id="addAssigneeDismissBtn"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Dropdown displaying assigned names -->
+            <div class="form-group">
+              <label for="addAssignee">Select Assignee:</label>
+              <select class="form-control" id="addAssignee" multiple></select>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <!-- CloseButton -->
+            <button
+              id="AddAssigneeCloseBtn"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+
+            <!-- SaveChangesButton -->
+            <button type="button" class="btn btn-primary" id="add">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div
+      class="modal fade"
+      id="deleteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="deleteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">
+              Delete Confirmation
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this item?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="deleteUpdateButton"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="deleteTaskModel"
+      tabindex="-1"
+      role="dialog"
+      data-backdrop="static"
+      data-keyboard="false"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Task Input</h5>
+            <button
+              type="button"
+              id="deleteFromClsBtnTop"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="deleteForm">
+              <div class="form-group">
+                <label for="taskInputForDelete">Task ID:</label>
+                <input
+                  type="text"
+                  name="task_id"
+                  class="form-control"
+                  id="taskInputForDelete"
+                  placeholder="Enter Task ID"
+                />
+              </div>
+              <div class="form-group">
+                <!-- submitButton -->
+                <button
+                  type="submit"
+                  value="deleteFormSubmit"
+                  class="btn btn-primary"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Conformation Model -->
+    <div class="modal" id="deleteConfirmationModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Are you sure you want to delete?</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>This action cannot be undone.</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              id="no"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              No
+            </button>
+            <button type="button" id="yes" class="btn btn-danger">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabulator -->
+    <script src="https://unpkg.com/tabulator-tables@5.1.5/dist/js/tabulator.min.js"></script>
+
+    <script>
+      //Dropdown Functions Filter and display selected name
+      function filterDropdown() {
+        var input, filter, dropdown, items, a, i;
+        input = document.getElementById("dropdownSearch");
+        filter = input.value.toUpperCase();
+        dropdown = document.getElementById("navBarDropDown");
+        items = dropdown.getElementsByTagName("a");
+
+        for (i = 0; i < items.length; i++) {
+          a = items[i];
+          if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a.style.display = "";
+          } else {
+            a.style.display = "none";
+          }
+        }
+      }
+
+      function selectItem(itemText) {
+        document.getElementById("selectedOption").innerHTML = itemText;
+      }
+
+      function refreshPage() {
+        // Assuming this is part of your app.js file
+
+        // Reload the page
+        location.reload();
+      }
+    </script>
+
+    <script>
+      // Function to enable editing when clicking on the input
+      function enableEdit(input) {
+        input.readOnly = false;
+      }
+
+      // Function to handle key press events, specifically Enter key
+      function handleKeyPress(event) {
+        if (event.key === "Enter") {
+          // Call your updateDatabase function here
+          updateDatabase();
+
+          // Disable editing after Enter is pressed
+          document.getElementById("progressDisplay").readOnly = true;
+        }
+      }
+
+      // Function to update the database (replace this with your actual logic)
+      function updateDatabase() {
+        // Your logic to update the database
+        console.log("Database updated!");
+      }
+    </script>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Bootstrap 4 JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Summer note JS -->
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+    <!-- Popper.Js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+
+    <!-- externalJs -->
+    <script src="app.js"></script>
+
+    <!-- Apex Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  </body>
+</html>

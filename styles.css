@@ -1,0 +1,296 @@
+#taskForm {
+  max-height: 70vh;
+  overflow: hidden;
+  overflow: scroll;
+}
+.custom-nav {
+  /* background-color: #f8f9fa; */
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.custom-nav .nav-item {
+  margin-right: 10px; /* Space between navigation items */
+}
+.custom-nav .nav-link {
+  color: #495057;
+}
+.custom-nav .nav-link.active {
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 3px;
+}
+.circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /* background-color: #f9f9f9; */
+  background-color: #fff;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+}
+
+.task-container {
+  max-width: auto;
+  max-height: auto;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+.star-rating a {
+  color: #f1c40f;
+  text-decoration: none;
+}
+.task-details p {
+  color: #555;
+  margin-bottom: 10px;
+}
+.task-details strong {
+  color: #333;
+}
+.star-rating a:hover {
+  text-decoration: none;
+  color: #f39c12;
+}
+
+.out-btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.out-btn-group button {
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  width: 48%;
+}
+
+.weekly-updates {
+  display: block;
+  margin-top: 20px;
+}
+.weekly-updates ol {
+  padding-left: 20px;
+}
+.weekly-updates ol li {
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+#addUpdateBtn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  display: block;
+  /* border-radius: 5px; */
+}
+#showMoreBtn {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#showMoreBtn:hover {
+  background-color: #0056b3;
+}
+
+.star-rating {
+  display: inline-block;
+  font-size: 24px;
+}
+
+.full-star {
+  color: gold;
+}
+
+.empty-star {
+  color: grey;
+}
+
+/* Form Tabulator */
+
+.table-controls-legend {
+  margin: 20px 0 5px 0;
+  color: #3fb449;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.table-controls {
+  margin-bottom: 10px;
+  padding: 10px 5px 0 5px;
+  /* background: #121212; */
+  border: 1px solid #2d2c2c;
+  font-size: 14px;
+}
+
+.table-controls input,
+.table-controls select {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 4px 10px;
+  border: 1px solid #4b4b4b;
+  border-radius: 5px;
+  /* background: #1f1f1f; */
+  outline: none;
+}
+
+.table-controls input,
+.table-controls select,
+.table-controls button,
+.table-controls > span {
+  margin: 0 5px 10px 5px;
+}
+
+@media (max-width: 767px) {
+  .table-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .table-controls input,
+  .table-controls select,
+  .table-controls button,
+  .table-controls > span {
+    width: calc(100% - 10px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  #navbar {
+    display: none;
+    /* flex-direction: column; */
+  }
+}
+
+#chart {
+  height: auto;
+  width: 100%;
+}
+
+#loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 9999;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 15% auto;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#example-table {
+  background-color: #fff;
+
+  max-width: auto;
+  max-height: auto;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+}
+
+#navBarDropDown {
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+#navBarDropDown1 {
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: #dc3545;
+}
+
+.task-container {
+  position: relative;
+  margin: 20px;
+}
+
+#addAssignee {
+  /* Set a desired height for the modal */
+  height: 30vh;
+  overflow-y: auto;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-label {
+  margin-right: 10px;
+}
+
+.small-input {
+  width: 7vw;
+}
+
+.chart-container {
+  height: 70vh;
+  border: 1px solid #ccc;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Tasks and assignees */
+
+.TaskAndAssigneeInfo {
+  height: 48vh;
+  overflow-y: hidden;
+  overflow-y: scroll;
+}
